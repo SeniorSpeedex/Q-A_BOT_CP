@@ -39,7 +39,7 @@ class Ollama(BaseOllama):
             "prompt": self.prompt,
             "stream": self.stream,
             "options": {
-                "temperature": 0.2
+                "temperature": 0.3
             },
         }
 

@@ -4,14 +4,17 @@ services:
     expose:
       - 11434/tcp
     runtime: nvidia
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "11434:11434"
     healthcheck:
       test: llama --version
-    entrypoint: /root/entrypoint.sh
     volumes:
       - ./llama:/root/.llama
       - ./entrypoint.sh:/root/entrypoint.sh
+    entrypoint: ["/bin/sh", "/root/entrypoint.sh"]
     networks:
       - general
 
@@ -26,12 +29,12 @@ services:
       - "8000:8000"
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: app/Dockerfile
     dns:
       - "1.1.1.1"
     depends_on:
       - ollama
-    command: [ "/bin/sh", "-c", "python3 app.bot.__main__" ]
+    command: [ "/bin/sh", "-c", "python3.12 app/bot/__main__.py" ]
     networks:
       - general
 
