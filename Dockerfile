@@ -32,7 +32,6 @@ COPY requirements.txt requirements.txt
 RUN python3.12 -m pip install --no-cache-dir --upgrade -r requirements.txt
 
 COPY app app
-COPY prompts prompts
 
 EXPOSE 8000
 
