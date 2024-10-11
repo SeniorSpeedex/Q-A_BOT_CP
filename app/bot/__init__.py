@@ -12,4 +12,3 @@ logging.basicConfig(
 )
 
 logger = logging.getLogger(__name__)
-bot = Bot(BOT_TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))

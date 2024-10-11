@@ -18,7 +18,7 @@ class Ollama(BaseOllama):
 
         Args:
             prompt (str): The input prompt for the model.
-            model (Literal["llama3:8b"], optional): The model to use. Defaults to "llama3:8b".
+            model (Literal["qwen2"], optional): The model to use.".
             stream (bool, optional): Whether to stream the response. Defaults to False.
             endpoint (str, optional): The API endpoint to send the request to. Defaults to "http://ollama:11434/api/generate".
             system_prompt (str, optional): System prompt for the model.
