@@ -37,10 +37,3 @@ COPY .env app/
 EXPOSE 8000
 
 ENV PYTHONPATH=/app
-
-RUN apt-get update && apt-get install -y git
-RUN git clone https://github.com/peterjc/backports.lzma.git && \
-    cd backports.lzma && \
-    python3.12 setup.py install && \
-    cd test && \
-    python3.12 test_lzma.py
