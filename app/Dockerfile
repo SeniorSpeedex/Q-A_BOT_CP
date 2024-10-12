@@ -38,7 +38,7 @@ EXPOSE 8000
 
 ENV PYTHONPATH=/app
 
-RUN apt-get install -y git
+RUN apt-get update && apt-get install -y git
 RUN git clone git://github.com/peterjc/backports.lzma.git && \
     cd backports.lzma && \
     python3.12 setup.py install && \
