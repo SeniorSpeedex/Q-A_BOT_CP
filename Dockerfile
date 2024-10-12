@@ -1,4 +1,4 @@
-FROM ollama:lastest
+FROM ollama/ollama:lastest
 
 RUN apt-get update && apt-get install -y bash
 
