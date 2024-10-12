@@ -6,7 +6,7 @@ RUN apt-get update && \
     apt-get install -y build-essential libssl-dev zlib1g-dev \
                        libncurses5-dev libgdbm-dev libnss3-dev \
                        libsqlite3-dev libreadline-dev libffi-dev \
-                       curl libbz2-dev git && \
+                       curl libbz2-dev && \
     rm -rf /var/lib/apt/lists/*
 
 RUN curl -O https://www.python.org/ftp/python/3.12.5/Python-3.12.5.tgz && \
@@ -21,18 +21,18 @@ RUN apt-get update && \
     apt-get install -y ffmpeg && \
     rm -rf /var/lib/apt/lists/*
 
+
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 ENV PATH="/root/.cargo/bin:${PATH}"
 
 WORKDIR /app
 
-
-COPY ../.env app/
 COPY ../requirements.txt requirements.txt
-COPY .. .
-
 RUN python3.12 -m pip install --no-cache-dir --upgrade -r requirements.txt
+
+COPY .. .
+COPY ../.env app/
 
 EXPOSE 8000
 
