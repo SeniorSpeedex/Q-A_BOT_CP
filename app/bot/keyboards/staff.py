@@ -4,11 +4,8 @@ admin_keyboard_button = InlineKeyboardButton(text="Административн�
 document_management_button = InlineKeyboardButton(text="Документная панель", callback_data="document_management_button")
 
 choice_keyboard = InlineKeyboardMarkup(
-    inline_keyboard=
-    [
-        [
-            admin_keyboard_button, document_management_button
-        ]
+    inline_keyboard=[
+        [admin_keyboard_button, document_management_button]
     ]
 )
 
@@ -17,11 +14,8 @@ list_document_button = InlineKeyboardButton(text="Список документ�
 unload_document_button = InlineKeyboardButton(text="Выгрузить документ", callback_data="unload_document_button")
 
 document_keyboard = InlineKeyboardMarkup(
-    inline_keyboard=
-    [
-        [
-            load_document_button, unload_document_button
-        ],
+    inline_keyboard=[
+        [load_document_button, unload_document_button],
         list_document_button
     ]
 )
@@ -32,11 +26,8 @@ employee_list_button = InlineKeyboardButton(text="Список сотрудни�
 demote_button = InlineKeyboardButton(text="Понизить права сотрудника.", callback_data="demote_button")
 
 admin_keyboard = InlineKeyboardMarkup(
-    inline_keyboard=
-    [
-        [
-            promote_button, demote_button
-        ],
+    inline_keyboard=[
+        [promote_button, demote_button],
         employee_list_button
     ]
 )
