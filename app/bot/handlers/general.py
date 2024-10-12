@@ -1,5 +1,6 @@
 from aiogram import Router
 from aiogram.filters import Command
+from aiogram.fsm.context import FSMContext
 from aiogram.types import CallbackQuery, Message
 from app.bot.keyboards.general import start_keyboard
 from app.bot.keyboards.general import faque_keyboard
@@ -8,16 +9,16 @@ from app.bot.keyboards.general import faque_keyboard
 router = Router()
 
 @router.message(Command(commands=["start"]))
-async def start_handler(message: Message):
+async def start_handler(message: Message, state: FSMContext):
+    await state.clear()
     await message.reply(
         'Commands: /start.                                                                                   '
         'Выберите действие',
         reply_markup=start_keyboard
-
     )
 
 @router.message(commands=["faque"])
-async def faque_handler(message: Message):
+async def faq_handler(message: Message):
     await message.reply(
         "Самые популярные вопросы:",
         replay_markup = faque_keyboard
