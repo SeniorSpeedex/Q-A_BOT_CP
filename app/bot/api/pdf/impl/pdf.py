@@ -2,10 +2,10 @@ import os
 import uuid
 from typing import override
 
-from huggingface_hub import HfFolder
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from qdrant_client import QdrantClient
-from qdrant_client.grpc import VectorParams, Distance, PointStruct
+from qdrant_client.conversions.common_types import Distance
+from qdrant_client.grpc import VectorParams, PointStruct
 from qdrant_client.http.models import UpdateResult
 
 from app.bot.api.ollama.impl.ollama import Ollama
