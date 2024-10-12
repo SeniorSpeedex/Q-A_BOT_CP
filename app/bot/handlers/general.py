@@ -17,9 +17,9 @@ async def start_handler(message: Message, state: FSMContext):
 
 
 @router.callback_query(F.data == "support_button")
-async def support_handler(message: Message, state: FSMContext):
+async def support_handler(callback_query: CallbackQuery, state: FSMContext):
     await state.set_state(GeneralStates.GET_HELP)
-    await message.answer(text='Напишите ваш запрос в тех.поддержку')
+    await callback_query.message.answer(text='Напишите ваш запрос в тех.поддержку')
 
 @router.callback_query(GeneralStates.GET_HELP)
 async def get_help(callback_query: CallbackQuery, state: FSMContext):
