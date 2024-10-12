@@ -2,6 +2,7 @@ import os
 import uuid
 from typing import override
 
+from huggingface_hub import HfFolder
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from qdrant_client import QdrantClient
 from qdrant_client.grpc import VectorParams, Distance, PointStruct
@@ -12,6 +13,11 @@ from app.bot.api.pdf.base_pdf import BasePDFProcessor
 from FlagEmbedding import BGEM3FlagModel
 from pdfminer.high_level import extract_text
 
+from app.bot.config import HF_TOKEN
+
+token = HF_TOKEN
+
+HfFolder.save_token(token)
 
 class PDFProcessor(BasePDFProcessor):
     def __init__(self, coll_name: str = 'test', qdrant_host: str = 'qdrant', qdrant_port: int = 6333):
