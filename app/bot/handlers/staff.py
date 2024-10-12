@@ -6,7 +6,7 @@ from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.types import Message, CallbackQuery, Document
 
-from app.bot.config import posts, super_user_id
+from app.bot.config import posts
 from app.bot.database.models.employee import Employee
 from app.bot.keyboards.staff import admin_keyboard, choice_keyboard, document_keyboard
 from app.bot.utils.utils import StaffStates
@@ -26,12 +26,12 @@ async def define_post(message: Message):
     await message.answer("Меню открыто", reply_markup=choice_keyboard)
 
 @router.callback_query(F.data.startswith("document_management_button"))
-async def open_document_panel(message: Message):
-    await message.answer("Документная панель открыта", reply_markup=document_keyboard)
+async def open_document_panel(callback_query: CallbackQuery):
+    await callback_query.message.edit_text(text="АДокументная панель открыта", reply_markup=document_keyboard)
 
 @router.callback_query(F.data.startswith("admin_keyboard_button"))
-async def open_admin_panel(message: Message):
-    await message.answer("Административная панель открыта", reply_markup=admin_keyboard)
+async def open_admin_panel(callback_query: CallbackQuery):
+    await callback_query.message.edit_text(text="Административная панель открыта", reply_markup=admin_keyboard)
 
 ###
 
