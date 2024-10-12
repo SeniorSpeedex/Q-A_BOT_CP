@@ -4,9 +4,8 @@ from typing import override
 
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from qdrant_client import QdrantClient
-from qdrant_client.conversions.common_types import Distance
 from qdrant_client.grpc import VectorParams, PointStruct
-from qdrant_client.http.models import UpdateResult
+from qdrant_client.http.models import UpdateResult, Distance
 
 from app.bot.api.ollama.impl.ollama import Ollama
 from app.bot.api.pdf.base_pdf import BasePDFProcessor
@@ -102,7 +101,7 @@ class PDFProcessor(BasePDFProcessor):
         self.qdrant_client.delete_collection(collection_name=self.coll_name)
         self.qdrant_client.create_collection(
             collection_name=self.coll_name,
-            vectors_config=VectorParams(size=1024, distance=Distance.COSINE())
+            vectors_config=VectorParams(size=1024, distance=Distance.COSINE)
         )
 
     @override
