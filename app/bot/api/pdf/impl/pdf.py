@@ -101,7 +101,7 @@ class PDFProcessor(BasePDFProcessor):
         self.qdrant_client.delete_collection(collection_name=self.coll_name)
         self.qdrant_client.create_collection(
             collection_name=self.coll_name,
-            vectors_config={"default": VectorParams(size=1024, distance=Distance.COSINE)}
+            vectors_config=VectorParams(size=1024, distance="Cosine")
         )
 
     @override
