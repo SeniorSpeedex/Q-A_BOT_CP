@@ -57,6 +57,8 @@ services:
       - general
 
 
+volumes:
+  mongo-data:
 
 networks:
   general:
