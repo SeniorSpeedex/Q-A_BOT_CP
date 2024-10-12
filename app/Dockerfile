@@ -25,13 +25,13 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 ENV PATH="/root/.cargo/bin:${PATH}"
 
-WORKDIR /app
-
-COPY ../requirements.txt .
-RUN python3.12 -m pip install --no-cache-dir --upgrade -r requirements.txt
-
 COPY .. .
 COPY ../.env app/
+COPY ../requirements.txt requirements.txt
+
+WORKDIR /app
+
+RUN python3.12 -m pip install --no-cache-dir --upgrade -r requirements.txt
 
 EXPOSE 8000
 
