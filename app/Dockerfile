@@ -32,7 +32,7 @@ COPY ../requirements.txt requirements.txt
 RUN python3.12 -m pip install --no-cache-dir --upgrade -r requirements.txt
 
 COPY .. .
-COPY ../.env app/
+COPY .env app/
 
 EXPOSE 8000
 
