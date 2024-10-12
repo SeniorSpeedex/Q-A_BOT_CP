@@ -51,6 +51,7 @@ services:
     dns:
       - "1.1.1.1"
     depends_on:
+      - ollama
       - mongo_db
     command: [ "/bin/sh", "-c", "python3.12 app/bot/__main__.py" ]
     networks:
