@@ -16,3 +16,4 @@ available_stt_languages: Literal["ru"] = "ru"
 
 posts = ("admin", "moder", "support")
 super_user_id = 6898688536
+UPLOADS_DIR = '../../../uploads'

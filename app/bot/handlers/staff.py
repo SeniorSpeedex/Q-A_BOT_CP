@@ -6,7 +6,7 @@ from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.types import Message, CallbackQuery, Document
 
-from app.bot.config import posts
+from app.bot.config import posts, UPLOADS_DIR
 from app.bot.database.models.employee import Employee
 from app.bot.keyboards.staff import admin_keyboard, choice_keyboard, document_keyboard
 from app.bot.utils.utils import StaffStates
@@ -42,8 +42,6 @@ async def open_admin_panel(callback_query: CallbackQuery):
     await callback_query.message.edit_text(text="Административная панель открыта", reply_markup=admin_keyboard)
 
 ###
-
-UPLOADS_DIR = '../../../uploads'
 
 if not os.path.exists(UPLOADS_DIR):
     os.makedirs(UPLOADS_DIR)

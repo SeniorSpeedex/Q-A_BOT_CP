@@ -6,3 +6,6 @@ class StaffStates(StatesGroup):
     INSERT_POST = State()
     LOAD_DOCUMENT = State()
     UNLOAD_DOCUMENT = State()
+
+class GeneralStates(StatesGroup):
+    GET_HELP = State()
