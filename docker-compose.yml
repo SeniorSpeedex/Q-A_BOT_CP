@@ -24,6 +24,16 @@ services:
     networks:
       - general
 
+  mongo_db:
+    image: mongo:latest
+    container_name: mongo_db
+    environment:
+      - MONGO_INITDB_DATABASE=prod
+    expose:
+      - 27017/tcp
+    volumes:
+      - mongo-data:/data/db
+
   solution:
     container_name: solution
     runtime: nvidia
