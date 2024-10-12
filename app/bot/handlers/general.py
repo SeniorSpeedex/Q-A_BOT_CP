@@ -21,12 +21,12 @@ async def support_handler(callback_query: CallbackQuery, state: FSMContext):
     await state.set_state(GeneralStates.GET_HELP)
     await callback_query.message.answer(text='Напишите ваш запрос в тех.поддержку')
 
-@router.callback_query(GeneralStates.GET_HELP)
-async def get_help(callback_query: CallbackQuery, state: FSMContext):
+@router.message(GeneralStates.GET_HELP)
+async def get_help(message: Message):
     processor = PDFProcessor()
     processor.initialize_collection()
     processor.load_all_documents('../../../uploads', ['\n\n', '\n'], 1500, 300)
 
-    answer = await processor.query_pdf(callback_query.message.text, 5)
-    await callback_query.message.answer(answer)
+    answer = await processor.query_pdf(message.text, 5)
+    await message.message.answer(answer)
 
