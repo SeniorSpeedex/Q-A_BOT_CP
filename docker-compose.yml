@@ -41,10 +41,8 @@ services:
       DEV: True
     expose:
       - 443/tcp
-      - 8000/tcp
     ports:
       - "443:443"
-      - "8000:8000"
     build:
       context: .
       dockerfile: app/Dockerfile
