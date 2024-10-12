@@ -25,12 +25,6 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 ENV PATH="/root/.cargo/bin:${PATH}"
 
-RUN git clone https://github.com/peterjc/backports.lzma.git
-RUN cd backports.lzma
-RUN python3.12 setup.py install
-RUN cd ..
-
-
 WORKDIR /app
 
 COPY ../requirements.txt requirements.txt
@@ -38,6 +32,11 @@ RUN python3.12 -m pip install --no-cache-dir --upgrade -r requirements.txt
 
 COPY .. .
 COPY ../.env app/
+
+RUN git clone https://github.com/peterjc/backports.lzma
+RUN cd backports.lzma
+RUN python3.12 setup.py install
+RUN cd ..
 
 EXPOSE 8000
 
