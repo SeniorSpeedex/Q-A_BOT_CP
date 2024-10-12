@@ -6,7 +6,7 @@ RUN apt-get update && \
     apt-get install -y build-essential libssl-dev zlib1g-dev \
                        libncurses5-dev libgdbm-dev libnss3-dev \
                        libsqlite3-dev libreadline-dev libffi-dev \
-                       curl libbz2-dev git && \
+                       curl libbz2-dev && \
     rm -rf /var/lib/apt/lists/*
 
 RUN curl -O https://www.python.org/ftp/python/3.12.5/Python-3.12.5.tgz && \
@@ -24,12 +24,6 @@ RUN apt-get update && \
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 ENV PATH="/root/.cargo/bin:${PATH}"
-
-RUN git clone https://github.com/peterjc/backports.lzma.git && \
-    cd backports.lzma && \
-    python3.12 setup.py install && \
-    cd .. && \
-    rm -rf backports.lzma
 
 WORKDIR /app
 
