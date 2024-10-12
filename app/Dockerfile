@@ -31,6 +31,10 @@ ENV PATH="/root/.cargo/bin:${PATH}"
 RUN apt update
 RUN apt install -y git
 
+RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash && \
+    apt-get install -y git-lfs && \
+    git lfs install
+
 WORKDIR /app
 
 COPY ../requirements.txt requirements.txt
