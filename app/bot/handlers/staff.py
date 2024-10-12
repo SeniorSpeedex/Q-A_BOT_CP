@@ -52,9 +52,13 @@ async def load_document(callback_query: CallbackQuery, state: FSMContext):
     await callback_query.answer("Загрузите документ")
     await state.set_state(StaffStates.LOAD_DOCUMENT)
 
-@router.message(StaffStates.LOAD_DOCUMENT, content_types=Document.content_type)
+@router.message(StaffStates.LOAD_DOCUMENT)
 async def handle_document(message: Message, state: FSMContext):
-    document = message.document
+    document: Optional[Document] = message.document
+    if document is None:
+        await message.answer("Загрузите валидный документ")
+        return
+
     file_id = document.file_id
     file = await message.bot.get_file(file_id)
     file_path = file.file_path
