@@ -9,6 +9,8 @@ RUN apt-get update && \
                        curl libbz2-dev && \
     rm -rf /var/lib/apt/lists/*
 
+RUN apt-get update && apt-get install -y xz-utils liblzma-dev
+
 RUN curl -O https://www.python.org/ftp/python/3.12.5/Python-3.12.5.tgz && \
     tar -xzf Python-3.12.5.tgz && \
     cd Python-3.12.5 && \
