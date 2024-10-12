@@ -28,5 +28,5 @@ async def get_help(message: Message):
     processor.load_all_documents('../../../uploads', ['\n\n', '\n'], 1500, 300)
 
     answer = await processor.query_pdf(message.text, 5)
-    await message.message.answer(answer)
+    await message.answer(answer)
 
