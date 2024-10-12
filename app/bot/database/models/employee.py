@@ -14,9 +14,9 @@ class PostEnum(str, Enum):
 
 class Employee(Document):
     full_name: str
-    telegram_id: Indexed(int, unique=True)
-    created_at: datetime = Field(default=datetime.now())
     post: PostEnum
+    telegram_id: Indexed(int, unique=True)
+    created_at: datetime = Field(default_factory=datetime.now)
 
     class Settings:
         name = "users"
