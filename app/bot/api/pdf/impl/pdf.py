@@ -12,8 +12,6 @@ from app.bot.api.pdf.base_pdf import BasePDFProcessor
 from FlagEmbedding import BGEM3FlagModel
 from pdfminer.high_level import extract_text
 
-from app.bot.utils.singleton import singleton
-
 
 class PDFProcessor(BasePDFProcessor):
     def __init__(self, coll_name: str = 'test', qdrant_host: str = '95.174.94.32', qdrant_port: int = 6333):
