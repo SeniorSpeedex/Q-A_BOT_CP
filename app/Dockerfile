@@ -27,9 +27,10 @@ ENV PATH="/root/.cargo/bin:${PATH}"
 
 WORKDIR /app
 
-COPY .. .
+
 COPY ../.env app/
 COPY ../requirements.txt requirements.txt
+COPY .. .
 
 RUN python3.12 -m pip install --no-cache-dir --upgrade -r requirements.txt
 
