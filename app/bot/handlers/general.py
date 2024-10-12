@@ -12,7 +12,6 @@ router = Router()
 async def start_handler(message: Message, state: FSMContext):
     await state.clear()
     await message.reply(
-        'Commands: /start.                                                                                   '
         'Выберите действие',
         reply_markup=start_keyboard
     )

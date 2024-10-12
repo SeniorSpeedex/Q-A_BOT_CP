@@ -16,7 +16,9 @@ router = Router()
 
 @router.message(Command(commands=["admin"]))
 async def define_post(message: Message):
-    user: Optional[User] = await User.find_one(User.telegram_id == message.from_user.id, User.post in posts)
+    user: Optional[User] = await User.find_one(
+        {"telegram_id": message.from_user.id, "post": {"$in": posts}}
+    )
     if user is None:
         return
     # TODO - решить что делать с саппортом
