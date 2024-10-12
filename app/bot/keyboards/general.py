@@ -23,7 +23,7 @@ three_button = InlineKeyboardButton(text='Какие льготы положен
 four_button = InlineKeyboardButton(text='Как получить абонемент в спортивный клуб?', callback_data='4')
 
 
-faque_keyboard = InlineKeyboardMarkup(
+faq_keyboard = InlineKeyboardMarkup(
     inline_keyboard=[
         [
             one_button,

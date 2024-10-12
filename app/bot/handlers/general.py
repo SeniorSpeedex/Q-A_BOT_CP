@@ -3,7 +3,7 @@ from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.types import CallbackQuery, Message
 from app.bot.keyboards.general import start_keyboard
-from app.bot.keyboards.general import faque_keyboard
+from app.bot.keyboards.general import faq_keyboard
 
 
 router = Router()
@@ -21,7 +21,7 @@ async def start_handler(message: Message, state: FSMContext):
 async def faq_handler(message: Message):
     await message.reply(
         "Самые популярные вопросы:",
-        replay_markup = faque_keyboard
+        replay_markup = faq_keyboard
 
     )
 @router.callback_query(lambda query: query.data in ('1', '2', '3', '4'))
