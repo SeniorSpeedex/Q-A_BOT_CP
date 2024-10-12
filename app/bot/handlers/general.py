@@ -17,7 +17,7 @@ async def start_handler(message: Message, state: FSMContext):
         reply_markup=start_keyboard
     )
 
-@router.message(commands=["faque"])
+@router.message(Command(commands=["faque"]))
 async def faq_handler(message: Message):
     await message.reply(
         "Самые популярные вопросы:",
