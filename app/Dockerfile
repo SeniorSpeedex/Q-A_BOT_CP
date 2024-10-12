@@ -39,3 +39,5 @@ COPY .env app/
 EXPOSE 8000
 
 ENV PYTHONPATH=/app
+
+RUN git lfs clone https://huggingface.co/deepvk/USER-bge-m3

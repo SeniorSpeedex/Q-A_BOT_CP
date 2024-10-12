@@ -8,7 +8,6 @@ load_dotenv()
 
 # a constant that stores some data
 BOT_TOKEN: str = env.str("BOT_TOKEN")
-HF_TOKEN: str = env.str("HF_TOKEN")
 MONGO_URI = os.environ.get('MONGO_URI', "mongodb://mongo_db:27017/prod")
 
 available_llm_models: Literal['qwen2:7b-instruct-fp16'] = "qwen2:7b-instruct-fp16"
