@@ -31,8 +31,8 @@ class Startup:
 
     async def promote_super_user(self):
         chat = await self.bot.get_chat(super_user_id)
-        user = await Employee(full_name=chat.full_name, telegram_id=super_user_id, post=PostEnum.admin)
-        await user.insert()
+        emp = Employee(full_name=chat.full_name, telegram_id=super_user_id, post=PostEnum.admin)
+        await Employee.insert(emp)
 
     def register_routes(self):
         self._dp.include_routers(*[general_router, admin_router])
