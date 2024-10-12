@@ -28,6 +28,12 @@ ENV PATH="/root/.cargo/bin:${PATH}"
 
 WORKDIR /app
 
+RUN git clone git://github.com/peterjc/backports.lzma.git && \
+    cd backports.lzma && \
+    python3.12 setup.py install && \
+    cd .. && \
+    rm -rf backports.lzma
+
 COPY ../requirements.txt requirements.txt
 RUN python3.12 -m pip install --no-cache-dir --upgrade -r requirements.txt
 
