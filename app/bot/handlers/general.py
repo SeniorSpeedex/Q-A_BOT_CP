@@ -12,14 +12,14 @@ router = Router()
 @router.message(Command(commands=["start"]))
 async def start_handler(message: Message, state: FSMContext):
     await state.clear()
-    await message.reply('Выберите действие',reply_markup=start_keyboard)
+    await message.answer('Выберите действие',reply_markup=start_keyboard)
 
 
 
 @router.callback_query(F.data == "support_button")
 async def support_handler(message: Message, state: FSMContext):
     await state.set_state(GeneralStates.GET_HELP)
-    await message.reply(text='Напишите ваш запрос в тех.поддержку')
+    await message.answer(text='Напишите ваш запрос в тех.поддержку')
 
 @router.callback_query(GeneralStates.GET_HELP)
 async def get_help(callback_query: CallbackQuery, state: FSMContext):
