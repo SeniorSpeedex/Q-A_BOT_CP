@@ -8,7 +8,7 @@ choice_keyboard = InlineKeyboardMarkup(
         [admin_keyboard_button, document_management_button]
     ]
 )
-s
+
 load_document_button = InlineKeyboardButton(text="Загрузить документ", callback_data="load_document_button")
 list_document_button = InlineKeyboardButton(text="Список документов", callback_data="list_document_button")
 unload_document_button = InlineKeyboardButton(text="Выгрузить документ", callback_data="unload_document_button")
