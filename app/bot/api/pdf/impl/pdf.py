@@ -15,7 +15,7 @@ from pdfminer.high_level import extract_text
 class PDFProcessor(BasePDFProcessor):
     def __init__(self, coll_name: str = 'test', qdrant_host: str = 'qdrant', qdrant_port: int = 6333):
         super().__init__(coll_name, qdrant_host, qdrant_port)
-        self.encoder = BGEM3FlagModel('USER-bge-m3')
+        self.encoder = BGEM3FlagModel('USER-bge-m3', device='cuda')
         self.qdrant_client = QdrantClient(qdrant_host, port=qdrant_port)
         self.coll_name = coll_name
         self.prompt_temp = '''Используй только следующий Контекст, чтобы кратко ответить на Вопрос в конце.

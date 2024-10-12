@@ -1,5 +1,6 @@
 import logging
 
+import torch
 from aiogram import Bot
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
@@ -12,3 +13,7 @@ logging.basicConfig(
 )
 
 logger = logging.getLogger(__name__)
+cuda_available = torch.cuda.is_available()
+torch.device("cuda" if cuda_available else "cpu")
+if not cuda_available:
+    logger.warning("Cuda cores are unavailable, switching to CPU")

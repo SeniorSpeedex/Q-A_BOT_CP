@@ -4,6 +4,7 @@ from aiogram.fsm.context import FSMContext
 from aiogram.types import Message, CallbackQuery
 
 from app.bot.api.pdf.impl.pdf import PDFProcessor
+from app.bot.config import UPLOADS_DIR
 from app.bot.keyboards.general import start_keyboard
 from app.bot.utils.utils import GeneralStates
 
@@ -22,11 +23,13 @@ async def support_handler(callback_query: CallbackQuery, state: FSMContext):
     await callback_query.message.answer(text='Напишите ваш запрос в тех.поддержку')
 
 @router.message(GeneralStates.GET_HELP)
-async def get_help(message: Message):
+async def get_help(message: Message, state: FSMContext):
     processor = PDFProcessor()
     processor.initialize_collection()
-    processor.load_all_documents('../../../uploads', ['\n\n', '\n'], 1500, 300)
+    processor.load_all_documents(UPLOADS_DIR, ['\n\n', '\n'], 1500, 300)
 
     answer = await processor.query_pdf(message.text, 5)
     await message.answer(answer)
+    await state.clear()
+
 
