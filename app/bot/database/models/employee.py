@@ -9,7 +9,7 @@ class PostEnum(str, Enum):
     moder = "moder"
     support = "support"
 
-class User(Document):
+class Employee(Document):
     full_name: str
     telegram_id: Indexed(int, unique=True)
     created_at: datetime

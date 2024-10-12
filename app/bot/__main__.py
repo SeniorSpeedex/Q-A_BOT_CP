@@ -8,7 +8,7 @@ from motor.motor_asyncio import AsyncIOMotorClient
 
 from app.bot import BOT_TOKEN
 from app.bot.config import MONGO_URI, super_user_id
-from app.bot.database.models.user import User
+from app.bot.database.models.employee import Employee, PostEnum
 from app.bot.utils.singleton import singleton
 from app.bot.handlers.general import router as general_router
 from app.bot.handlers.staff import router as admin_router
@@ -22,15 +22,16 @@ class Startup:
     @staticmethod
     async def _init_database():
         client = AsyncIOMotorClient(MONGO_URI)
-        await init_beanie(database=client.db_name, document_models=[User])
+        await init_beanie(database=client.db_name, document_models=[Employee])
 
     async def start_polling(self):
         await self._init_database()
+        await self.promote_super_user()
         await self._dp.start_polling(self.bot)
 
     async def promote_super_user(self):
         chat = await self.bot.get_chat(super_user_id)
-        user = await User(full_name=chat.full_name, telegram_id=super_user_id, post="admin")
+        user = await Employee(full_name=chat.full_name, telegram_id=super_user_id, post=PostEnum.admin)
         await user.insert()
 
     def register_routes(self):
