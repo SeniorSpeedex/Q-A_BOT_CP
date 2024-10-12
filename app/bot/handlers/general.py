@@ -76,3 +76,4 @@ async def callback_handler(query: CallbackQuery):
                                   )
     elif query.data == 'menu':
         await query.message.reply('назад')
+
