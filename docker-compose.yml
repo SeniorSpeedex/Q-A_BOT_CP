@@ -1,5 +1,5 @@
 services:
-  ollama:
+  ollama_app:
     expose:
       - 11434/tcp
     runtime: nvidia
@@ -49,7 +49,7 @@ services:
     dns:
       - "1.1.1.1"
     depends_on:
-      - ollama
+      - ollama_app
       - mongo_db
     command: [ "/bin/sh", "-c", "python3.12 app/bot/__main__.py" ]
     networks:
