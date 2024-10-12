@@ -7,8 +7,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    ports:
-      - "11434:11434"
     healthcheck:
       test: llama --version
     volumes:
@@ -23,9 +21,6 @@ services:
     expose:
       - 6333/tcp
       - 80/tcp
-    ports:
-      - "6333:6333"
-      - "80:80"
     networks:
       - general
 
@@ -34,6 +29,9 @@ services:
     runtime: nvidia
     environment:
       DEV: True
+    expose:
+      - 443/tcp
+      - 8000/tcp
     ports:
       - "443:443"
       - "8000:8000"
