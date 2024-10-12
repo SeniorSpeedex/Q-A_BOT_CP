@@ -1,3 +1,5 @@
+#!/usr/bin/sh
+
 ollama serve &
 
 sleep 5
