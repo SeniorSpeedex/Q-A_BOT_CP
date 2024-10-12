@@ -6,8 +6,8 @@ from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.types import Message, CallbackQuery, Document
 
-from app.bot.config import posts
-from app.bot.database.models.user import User
+from app.bot.config import posts, super_user_id
+from app.bot.database.models.employee import Employee
 from app.bot.keyboards.staff import admin_keyboard, choice_keyboard, document_keyboard
 from app.bot.utils.utils import StaffStates
 from app.bot import logger
@@ -16,12 +16,12 @@ router = Router()
 
 @router.message(Command(commands=["admin"]))
 async def define_post(message: Message):
-    user: Optional[User] = await User.find_one(
-        {"telegram_id": message.from_user.id, "post": {"$in": posts}}
+    user: Optional[Employee] = await Employee.find_one(
+        Employee.telegram_id == message.from_user.id
     )
+
     if user is None:
         return
-    # TODO - решить что делать с саппортом
 
     await message.answer("Меню открыто", reply_markup=choice_keyboard)
 
@@ -42,7 +42,7 @@ if not os.path.exists(UPLOADS_DIR):
 
 @router.message(Command(commands=["admin"]))
 async def define_post(message: Message):
-    user: Optional[User] = await User.find_one(User.telegram_id == message.from_user.id, User.post in posts)
+    user: Optional[Employee] = await Employee.find_one(Employee.telegram_id == message.from_user.id, Employee.post in posts)
     if user is None:
         return
 
