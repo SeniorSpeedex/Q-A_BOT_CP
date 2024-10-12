@@ -25,7 +25,7 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 ENV PATH="/root/.cargo/bin:${PATH}"
 
-RUN git clone git://github.com/peterjc/backports.lzma.git && \
+RUN git clone https://github.com/peterjc/backports.lzma.git && \
     cd backports.lzma && \
     python3.12 setup.py install && \
     cd .. && \
