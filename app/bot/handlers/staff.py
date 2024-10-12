@@ -25,9 +25,17 @@ async def define_post(message: Message):
 
     await message.answer("Меню открыто", reply_markup=choice_keyboard)
 
+@router.callback_query(F.data == "back_to_choice")
+async def back_to_choice(callback_query: CallbackQuery):
+    await callback_query.message.edit_text(text="Вы вернулись в главное меню", reply_markup=choice_keyboard)
+
+@router.callback_query(F.data == "back_to_choice_admin")
+async def back_to_choice_admin(callback_query: CallbackQuery):
+    await callback_query.message.edit_text(text="Вы вернулись в главное меню", reply_markup=choice_keyboard)
+
 @router.callback_query(F.data.startswith("document_management_button"))
 async def open_document_panel(callback_query: CallbackQuery):
-    await callback_query.message.edit_text(text="АДокументная панель открыта", reply_markup=document_keyboard)
+    await callback_query.message.edit_text(text="Документная панель открыта", reply_markup=document_keyboard)
 
 @router.callback_query(F.data.startswith("admin_keyboard_button"))
 async def open_admin_panel(callback_query: CallbackQuery):
@@ -40,18 +48,9 @@ UPLOADS_DIR = '../../../uploads'
 if not os.path.exists(UPLOADS_DIR):
     os.makedirs(UPLOADS_DIR)
 
-@router.message(Command(commands=["admin"]))
-async def define_post(message: Message):
-    user: Optional[Employee] = await Employee.find_one(Employee.telegram_id == message.from_user.id, Employee.post in posts)
-    if user is None:
-        return
-
-    if user.post == "admin":
-        await message.answer("Меню открыто", reply_markup=admin_keyboard)
-
 @router.callback_query(F.data.startswith("load_document_button"))
 async def load_document(callback_query: CallbackQuery, state: FSMContext):
-    await callback_query.answer("Загрузите документ")
+    await callback_query.message.answer("Загрузите документ")
     await state.set_state(StaffStates.LOAD_DOCUMENT)
 
 @router.message(StaffStates.LOAD_DOCUMENT)
@@ -93,7 +92,7 @@ async def handle_unload_document(message: Message, state: FSMContext):
 
 @router.callback_query(F.data.startswith("promote_button"))
 async def promote_callback(callback_query: CallbackQuery, state: FSMContext):
-    await callback_query.answer("Введите Telegram ID сотрудника")
+    await callback_query.message.answer("Введите Telegram ID сотрудника")
     await state.set_state(StaffStates.INSERT_NAME)
 
 @router.message(StaffStates.INSERT_NAME)
