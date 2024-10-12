@@ -14,5 +14,5 @@ available_llm_models: Literal['qwen2:7b-instruct-fp16'] = "qwen2:7b-instruct-fp1
 available_stt_models: Literal["base", "small"] = "small"
 available_stt_languages: Literal["ru"] = "ru"
 
-posts = Literal["admin", "moder", "support"]
+posts = ("admin", "moder", "support")
 super_user_id = 6898688536
